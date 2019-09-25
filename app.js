@@ -15,7 +15,7 @@ app.get('/apps', (req, res) => {
 
   //validate user input
   if (sort) {
-    if (!['app', 'rating'].includes(sort)) {
+    if (!['app', 'rating'].includes(sort.toLowerCase())) {
       return res
         .status(400)
         .send('Sort must be one of app or rating');
@@ -50,10 +50,7 @@ app.get('/apps', (req, res) => {
         .includes(genre.toLowerCase())
     );
   }
-  
   res.json(results);
 });
 
-app.listen(8000, () => {
-  console.log('server started on PORT 8000');
-});
+module.exports = app;
